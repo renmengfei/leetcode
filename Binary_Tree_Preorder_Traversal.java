@@ -19,10 +19,7 @@ public class Solution {
         
         Stack<TreeNode> stack = new Stack<TreeNode>();
         
-        list.add(root.val);
-        // the leftnode could be empty, so add right first.
-        if(root.right!=null) stack.push(root.right);
-        TreeNode ptr = root.left;
+        TreeNode ptr = root;
         
         while(true){
             while(ptr!=null){
