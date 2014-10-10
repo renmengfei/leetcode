@@ -13,7 +13,6 @@
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if(head==null) return null;
-        ListNode result = head;
         ListNode pivot = head;
         ListNode cur = pivot.next;
         
@@ -23,12 +22,12 @@ public class Solution {
             while(cur!=null && cur.val==pivot.val) cur= cur.next;
             if(cur==null) {
                 pivot.next=null;
-                return result;
+                return head;;
             }
             pivot.next=cur;
             pivot = cur;
             cur=cur.next;
         }
-        return result;
+        return head;
     }
 }
