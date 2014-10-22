@@ -69,11 +69,11 @@ int count = 0;
     public void totalNQueens(int col, int ld, int rd) {
         int pos, p;  
         if ( col != upperlim ) {  
-            pos = upperlim & (~(col | ld | rd ));  // upperilm & 不可少！！！因为n＝1时，upperlim＝0. 不然pos＝~(col|ld|rd)=1111
+            pos = upperlim & (~(col | ld | rd ));  // upperilm & 不可少！！作为位数限制！不然pos＝~(col|ld|rd)=111111超过限制
             while ( pos >0) {  
                 p = pos & (~pos + 1);  
                 pos = pos - p;  
-                totalNQueens(COL | p, (ld | p) << 1, (rd | p) >> 1);  
+                totalNQueens(col | p, (ld | p) << 1, (rd | p) >> 1);  
             }  
         }  
         else  
