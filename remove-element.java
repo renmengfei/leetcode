@@ -2,7 +2,6 @@ public class Solution {
     //Method 1: switch 
     public int removeElement(int[] A, int elem) {
       int len = A.length;
-      int count = 0;
       
       for(int i=0;i<len;i++){
           if(A[i]==elem){

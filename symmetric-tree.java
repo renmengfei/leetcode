@@ -9,7 +9,7 @@ public class Solution {
         if(left==null && right!=null) return false;
         if(left!=null&& right==null) return false;
         if(left==null && right== null) return true;
-        if(left.val!=right.val) return false;
+        if(left.val!=right.val) return false;// order is also important, 先判断null再判断val
         return isSym(left.left,right.right) && isSym(left.right, right.left);
     }
 }
