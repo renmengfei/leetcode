@@ -25,7 +25,7 @@ public class Solution {
         rq.add(root.right);
         TreeNode leftTemp = null;
         TreeNode rightTemp = null;
-        while(lq.isEmpty() == false && rq.isEmpty() == false){
+        while(!lq.isEmpty() && !rq.isEmpty()){
             leftTemp = lq.poll();
             rightTemp = rq.poll();
             if(leftTemp == null && rightTemp == null) continue;
