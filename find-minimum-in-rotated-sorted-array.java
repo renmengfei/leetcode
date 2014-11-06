@@ -1,5 +1,10 @@
 // Assume No Duplicates
 public class Solution {
+        // 0 1 2 3 4 (normal case)
+        // 1 2 3 4 0 (mid >= start)
+        // 2 3 4 0 1
+        // 3 4 0 1 2 (mid < start)
+        // 4 0 1 2 3
     public int findMin(int[] num) {
         return find(num,0,num.length-1);
     }
