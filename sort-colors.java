@@ -37,7 +37,7 @@ public class Solution {
         // Note: The Solution object is instantiated only once and is reused by each test case.
         int n = A.length;
         int r=0,w=0,b=n-1;
-        for(w=0;w<=b;) {
+        while(w<=b) {
             if(A[w]==0){
                swap(A,r,w);
 	       r++;

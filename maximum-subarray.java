@@ -1,16 +1,6 @@
 public class Solution {
     // Method 1:  O(N)
     public int maxSubArray(int[] A) {
-        // int result = Integer.MIN_VALUE;
-        // int max_here = Integer.MIN_VALUE;
-        
-        // for(int i=0;i<A.length;i++){
-        //     if(max_here<0) max_here=0;
-        //     max_here+=A[i]; // Cannot use max_here=Math.max(max_here+A[i],A[i]), because max_here+A[i] can be overflowed, unless change to max_here = 0 at initial.
-        //     result = Math.max(result, max_here);
-        // }
-        // return result;
-        
         int result = Integer.MIN_VALUE;
         int max_here = 0;
         
