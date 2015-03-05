@@ -19,6 +19,7 @@ public class Solution {
         //method2: O(lg(n*m)) = O(lgn+lgm) binary search
         int low = 0;
         int high = m*n-1;
+	// bug: <=
         while(low<=high){
             int mid = (low+high)/2;
             if(matrix[mid/n][mid%n]==target) return true;
