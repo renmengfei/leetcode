@@ -21,13 +21,15 @@ public class Solution {
         if(start>end) return -1;
         int mid = (start+end)/2;
         if(A[mid]==target) return mid;
+        // left is sorted
         if(A[mid]>=A[start]){
-            if(A[mid]>=target && A[start]<=target)
+            if(target<A[mid] && target>=A[start])
                 return search(A,target,start, mid-1);
             else return search(A, target,mid+1,end);
         }
+	// right is sorted
         else{
-            if(A[mid]<=target && A[end]>=target)
+            if(target>A[mid] && target<=A[end])
                 return search(A,target,mid+1,end);
             else return search(A,target, start,mid-1);
             

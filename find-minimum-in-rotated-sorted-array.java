@@ -18,9 +18,11 @@ public class Solution {
         }
         
         //bug: >=,  mid+1 are important for case [2,1]
+        // mess on right
         else if(A[mid]>=A[start]){
             return find(A,mid+1,end);
         }
+	//mess on left
         else
             return find(A,start,mid);
         
