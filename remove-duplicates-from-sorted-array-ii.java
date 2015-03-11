@@ -1,6 +1,5 @@
 public class Solution {
     public int removeDuplicates(int[] A) {
-        // Note: The Solution object is instantiated only once and is reused by each test case.
         int len = A.length;
         if(len<3) return len;
 
