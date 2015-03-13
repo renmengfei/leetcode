@@ -14,6 +14,7 @@ public class Solution {
 			// bug: 去掉重复
                         while (two < three && num[two] == num[two+1]) two++;//skip duplicates
                         while (two < three && num[three] == num[three-1]) three--;
+			// bug: 记住还得＋＋－－
                         two++;
                         three--;
                     }
