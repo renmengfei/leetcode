@@ -9,7 +9,8 @@
         for(int i=0;i<32;i++){
             for(int j=0;j<A.length;j++){
                 int tmp = (A[j]>>i)&1;
-                cache[i]=(cache[i]+1)%3;
+		if(tmp>0)
+                	cache[i]=(cache[i]+1)%3;
             }
             result|=cache[i]<<i;
         }
