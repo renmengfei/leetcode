@@ -1,3 +1,4 @@
+// e后只能是整数，不能是小数
 public class Solution {
     public boolean isNumber(String s) {
         if(s==null) return false;
