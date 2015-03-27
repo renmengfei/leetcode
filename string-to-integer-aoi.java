@@ -15,7 +15,7 @@ public class Solution {
       long result = 0;
       while(p<len && isdigit(str.charAt(p))){
           int digit = str.charAt(p)-'0';
-          // 难点，计算corner case使用max／10
+          // 难点，计算corner case使用max／10, 不能使用result*10+digit> max,因为min会溢出，必须用result跟min／10比较
           if(sign==-1 && result>-((Integer.MIN_VALUE+digit)/10))  
             return Integer.MIN_VALUE;  
         else if(sign==1 && result>(Integer.MAX_VALUE-digit)/10)  
