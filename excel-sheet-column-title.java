@@ -1,3 +1,4 @@
+// 区别在于，26进制从0开始，而excel从1开始，所以可以认为成n－1后的26进制
 public class Solution {
     public String convertToTitle(int n) {
         String result="";
