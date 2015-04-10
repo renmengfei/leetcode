@@ -1,3 +1,4 @@
+// Method 1: O(N) time, O(1) space
 public int canCompleteCircuit(int[] gas, int[] cost) {
 	// sum用于找不符合accumlation>0的点，那么默认让新的start点＝i+1
 	int sum = 0;
@@ -15,3 +16,4 @@ public int canCompleteCircuit(int[] gas, int[] cost) {
 	}
 	return total >= 0 ? result + 1 : -1;
 }
+
