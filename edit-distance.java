@@ -1,5 +1,4 @@
-// Method 1: initial thought O(NM) time, O(NM) space
-// dp[i][j] word1.substring(0,i), word2.substring(0,j)的比较    
+
 public int minDistance(String word1, String word2) {
         if(word1==null||word1.length()==0) return word2.length();
         if(word2==null||word2.length()==0) return word1.length();
@@ -28,21 +27,25 @@ public int minDistance(String word1, String word2) {
     }
 
 // Method 2: O(n) space
-    public int minDistance(String word1, String word2) {
-        int opt[] = new int[word2.length()+1];
-        // base case
-        for(int j = 0;j <= word2.length();j++) opt[j] = j;
-        // iteration
-        for(int i = 1;i <= word1.length();i++){
-            int pre = i, corner = i-1;
-            for(int j = 1;j <= word2.length();j++){
-                int temp = corner;
-                corner = opt[j];
-                temp += (word1.charAt(i-1)==word2.charAt(j-1)?0:1); 
-                opt[j] = Math.min(temp,Math.min(opt[j],pre)+1);
-                pre = opt[j];
+public int minDistance(String word1, String word2) {
+        int l1 = word1.length();
+        int l2 = word2.length();
+
+        int[] dp = new int[l2+1];
+        for (int j = 1; j <= l2; j++)
+            dp[j] = j;
+
+        for (int i = 1; i <= l1; i++)
+        {
+            int prev = i;
+            for (int j = 1; j <= l2; j++)
+            {
+                int cur;
+                cur = Math.min(Math.min(dp[j-1]+((word1.charAt(i-1) == word2.charAt(j-1))?0:1), prev+1), dp[j]+1);
+                dp[j-1] = prev;
+                prev = cur;
             }
-            opt[word2.length()] = pre;
+            dp[l2] = prev;
         }
-        return opt[word2.length()];
+        return dp[l2];
     }
