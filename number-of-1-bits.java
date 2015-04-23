@@ -11,7 +11,7 @@ public class Solution {
 }
 
 
-//Method 2: 减少循环次数
+//Method 2: 减少循环次数 每次找rightmost 1
 public class Solution {
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
