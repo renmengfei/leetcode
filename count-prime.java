@@ -22,3 +22,15 @@ public class Solution {
         return sum;
     }
 }
+
+
+// 判断一个数是否是prime
+// time: log(N)/2 
+public boolean isPrime(int n){
+    if(n%2==0) return false;
+   
+    for(int i=3; i<=Math.sqrt(n);i+=2){
+        if(n%i==0) return false;
+    }
+    return true;
+}
