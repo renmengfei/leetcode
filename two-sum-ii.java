@@ -1,4 +1,5 @@
 // two pointers O(N)
+// Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number
 public class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];

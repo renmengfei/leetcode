@@ -4,12 +4,12 @@ public class Solution {
        if(root==null) return;
        if(root.left!=null){
 	    	   flatten(root.left);
+		   flatten(root.right);
 	    	   TreeNode ptr = root.left;
 	    	   while(ptr.right!=null){
 	    		   ptr = ptr.right;
 	    	   }
 	    	   ptr.right = root.right;
-	    	   flatten(root.right);
 		   root.right = root.left;
 	           root.left = null;
        }

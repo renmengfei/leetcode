@@ -12,7 +12,6 @@ public class Solution {
             if(A[mid]<target) start = mid+1;
             else end = mid-1;
         }
-        if(A[mid]>target) return mid;
-        else return mid+1;
+	return start;
     }
 }
