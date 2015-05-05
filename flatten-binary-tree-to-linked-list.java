@@ -27,14 +27,14 @@ public class Solution {
 		}
 		if (ptr.left != null) {
 			ptr.right = ptr.left;
-			ptr.left = null;
+			ptr.left = null;// bug, 必须设为null
 		} else if (!s.isEmpty()) {
 			TreeNode tmp = s.pop();
 			ptr.right = tmp;
 		}
 		ptr = ptr.right;
 	} 
-       //Method 3: No Stacl
+       //Method 3: No Stack
 	TreeNode ptr = root;
 		
 	while(ptr!=null){

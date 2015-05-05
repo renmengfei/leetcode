@@ -9,16 +9,14 @@ public class Solution {
    		// bug, must add null， 否则size＝＝0
 		if (start > end) {
 			list.add(null);
-			return list;
 		}
 		if (start == end) {
 			TreeNode root = new TreeNode(start);
 			list.add(root);
-			return list;
 		}
-		for (int i = start; i <= end; i++) {
-
-			List<TreeNode> l = generateTrees(start, i - 1);
+		else{
+		    for (int i = start; i <= end; i++) {
+		  	List<TreeNode> l = generateTrees(start, i - 1);
 			List<TreeNode> r = generateTrees(i + 1, end);
 			for (int m = 0; m < l.size(); m++) {
 				for (int n = 0; n < r.size(); n++) {
@@ -28,6 +26,7 @@ public class Solution {
 					list.add(root);
 				}
 			}
+		    }
 		}
 		return list;
 	}
