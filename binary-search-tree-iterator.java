@@ -10,6 +10,7 @@ public class BSTIterator {
 
         /** @return whether we have a next smallest number */
         public boolean hasNext() {        
+	      // bug: current!=null is VERY INMPORTANT!
               return !stack.isEmpty() || current != null;  
         }
 

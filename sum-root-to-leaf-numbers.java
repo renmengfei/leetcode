@@ -3,15 +3,13 @@
 public class Solution {
     public int sumNumbers(TreeNode root) {
 		return sumNum(root,0);
-	}
+    }
+
+    public int sum(TreeNode n, int s){
+	//bug: return 0!!!
+        if (n == null) return 0;
+        if (n.right == null && n.left == null) return s*10 + n.val;
+        return sum(n.left, s*10 + n.val) + sum(n.right, s*10 + n.val);
+    }
 	
-	public int sumNum(TreeNode root, int father){
-		if(root==null) {
-			return 0;
-		}
-		int cur = father*10 + root.val;
-		int sum = sumNum(root.left, cur) + sumNum(root.right,cur);
-		if(sum==0) return cur;
-		else return sum;
-	}
 }
