@@ -1,4 +1,4 @@
-// Method 2: build a variable Space O(lg N), Runtime O(n)
+// Method 1: build a variable Space O(lg N), Runtime O(n)
 public class Solution {
     
     ListNode node;
@@ -26,6 +26,7 @@ public class Solution {
     }
 }
 
+// Method 2:思路一致，只不过将class variable换成wrap[] 
 public class Solution {
     //bug: java cannot pass reference, so I use an array to wrap the listnode
     public TreeNode sortedListToBST(ListNode head) {

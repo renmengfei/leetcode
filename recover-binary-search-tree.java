@@ -13,6 +13,7 @@ public class Solution {
 		if (cur == null) return;
 		inorder(cur.left);
 
+		// bug: first = prev, second = cur
 		if (previous != null && previous.val > cur.val) {
 			if (first == null) first = previous;
 			second = cur;

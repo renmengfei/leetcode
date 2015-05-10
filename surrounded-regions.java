@@ -49,6 +49,7 @@ public class Solution {
         int cols = board[0].length;
         Queue<Pair> q = new LinkedList<Pair>();
         q.add(new Pair(row,col));
+	// bug:必须先改value，不能在while里面poll后再改
         board[row][col] = 'B';
         while (!q.isEmpty()) {
             Pair cur = q.poll();
