@@ -10,6 +10,7 @@ public class Solution {
                 steps++;
                 next = maxlen;
             }
+	    // bug:maxlen的更新顺序不能跟if调换，要先使用next＝maxlen，再更新maxlen。否则step会少算
             maxlen = Math.max(maxlen,A[i]+i);
         }
         return steps;
