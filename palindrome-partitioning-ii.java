@@ -1,4 +1,5 @@
 // Method 1:http://fisherlei.blogspot.com/2013/03/leetcode-palindrome-partitioning-ii.html
+//思路其实跟jump game的dp做法很像，不是直接算dp[i]的关系，而是找出之前的所有dp[j]
 public class Solution {
     public int minCut(String s) {
          int len = s.length();  
