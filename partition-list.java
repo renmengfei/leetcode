@@ -1,25 +1,29 @@
 // Method 1: two lists 
 public class Solution {
     public ListNode partition(ListNode head, int x) {
-        ListNode small = new ListNode(-1), large = new ListNode(x);
-        ListNode smallend=small, largeend=large;
+        ListNode dummyleft = new ListNode(0);
+        ListNode dummyright = new ListNode(0);
+        ListNode left = dummyleft, right = dummyright;
+        
         ListNode ptr = head;
+        
         while(ptr!=null){
-            ListNode next  = ptr.next;
             if(ptr.val<x){
-                smallend.next = ptr;
-                smallend = smallend.next;
+                left.next = ptr;
+                left = left.next;
             }
             else{
-                largeend.next = ptr;
-                largeend = largeend.next;
-                largeend.next = null;//bug, 不加的话，指针会出问题
+                right.next = ptr;
+                right = right.next;
             }
-            ptr = next;
+            ptr=ptr.next;
         }
-
-        smallend.next = large.next;
-        return small.next;
+	// bug: 一定要加null，不然指针会死循环
+        right.next=null;
+        
+        left.next = dummyright.next;
+        return dummyleft.next;
+        
     }
 }
 
