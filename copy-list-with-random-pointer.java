@@ -34,7 +34,7 @@ public class Solution {
         
         while(oldhead!=null){
             oldhead.next=oldhead.next.next;
-            // bug: newlist' next = oldhead.next could be null
+            // bug: newlist' next = oldhead.next could be null, 例子[1,#]
             if(oldhead.next!=null){
                 cur.next = cur.next.next;
             }

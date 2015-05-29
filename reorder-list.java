@@ -1,3 +1,4 @@
+// 跟copy list with random pointer一致
 //(1) find middle (2) reverse second list (3)merge
 public class Solution {
     public void reorderList(ListNode head) {
