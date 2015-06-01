@@ -1,3 +1,4 @@
+// test case没有cover， candidates有重复的情况，如果有重复，一定要先去重，或者在remove后，while(i==i+1）i++跳过重复
 public class Solution {
      public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates);

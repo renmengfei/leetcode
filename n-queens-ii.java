@@ -8,7 +8,7 @@ This is a NP-complete problem
 //Method 1: Recursive
 public class Solution {
     
-    int count;//global variaable
+    int count;//global variable
     public int totalNQueens(int n) {
         count=0;
         if(n<=0) return count;
