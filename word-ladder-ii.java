@@ -4,6 +4,7 @@ public class Solution {
     public List<List<String>> findLadders(String start, String end,
             Set<String> dict) {
         List<List<String>> ladders = new ArrayList<List<String>>();
+	// map作用，记录每个点的parents
         Map<String, List<String>> map = new HashMap<String, List<String>>();
         Map<String, Integer> distance = new HashMap<String, Integer>();
 
@@ -59,7 +60,8 @@ public class Solution {
             }
         }
     }
-
+    
+    //  找adjancent nodes
     List<String> expand(String crt, Set<String> dict) {
         List<String> expansion = new ArrayList<String>();
 
