@@ -17,4 +17,24 @@ public class Solution {
     }
 }
 
+// Majority Number II
+// 找出现1/3的数，只有一个
 
+int candi1, candi2;
+int count1, count2;
+
+if(candi1==nums[i])count1++;
+else if(candi2==nums[i]) count2++;
+else if(count1==0) candi1 = nums[i];
+else if(count2==0) candi2 = nums[i];
+else{ count1--; count2--;}
+
+// 怎么找candi1， candi2哪个是呢？再次for循环
+// 统计candi1，candi2的次数，用次数大的
+// 为什么不能直接用count大的数呢？ 1, 0, 1, 0, 1, 0, 1, 2, 2, 2
+// 1的count被抵消了
+
+
+// Majority Number III
+// 找1/k的数
+// 用hash, 保存k-1个数

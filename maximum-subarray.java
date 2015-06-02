@@ -1,4 +1,14 @@
 public class Solution {
+//跟best timei to buy stock是一模一样的问题
+sum[i]=a[0]+a[1]+...+a[i];
+sum[j]=a[0]+...+a[i]+...a[j];
+
+找最大
+可以拓展到找k堆subarray的sum最大
+
+// minimum subarray
+// 取-1,再用max做
+
     // Method 1:  O(N)
     public int maxSubArray(int[] A) {
         int result = Integer.MIN_VALUE;
@@ -41,3 +51,6 @@ public class Solution {
         return Math.max(Math.max(maxleft, maxright), maxmid);
     }
 }
+
+
+
