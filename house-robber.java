@@ -16,7 +16,7 @@ public int rob(int[] num) {
 	return dp[len - 1];
 }
 
-// Method 2: in place DP. No space needed
+// Method 2: in place DP. No space needed，其实不好，最好不要改变input
 public int rob(int[] num) {
 	int len = num.length;
 	if (len < 2) {
