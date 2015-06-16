@@ -21,6 +21,7 @@ public class Solution {
                     else if(sum<-num[one]) two++;
                     else three--;
                 }
+		//while(one<num.length-1 && num[one]==num[one+1]) one++;//删除前面的if(one)，最后跳过重复，一样accept
             }
         }
         return result;

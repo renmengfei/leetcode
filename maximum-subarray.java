@@ -1,9 +1,10 @@
+前缀和，是模板解法
 public class Solution {
-//跟best timei to buy stock是一模一样的问题
+//跟best time to buy stock-i是一模一样的问题
 sum[i]=a[0]+a[1]+...+a[i];
 sum[j]=a[0]+...+a[i]+...a[j];
 
-找最大
+找sum[i]-sum[j]最大
 可以拓展到找k堆subarray的sum最大
 
 // minimum subarray

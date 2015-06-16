@@ -1,4 +1,5 @@
 //这个方法可以避免n=Integer.MIN_VALUE时的overflow
+// O(logN)
 public class Solution {
     public double pow(double x, int n) {
         if(x==0) return 1;

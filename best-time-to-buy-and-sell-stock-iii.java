@@ -12,7 +12,8 @@ public int maxProfit(int[] prices) {
 }
 
 
-// Method 1: two scan
+// Method 2: two scan
+// 分割点找 dp[i]左边的best-i, 右边的best-i
 public class Solution {
     public int maxProfit(int[] prices) {
         int result = 0;
@@ -22,12 +23,16 @@ public class Solution {
         int[] dp = new int[prices.length];
         // left to right
         int min = prices[0];
+	int maxprofit = 0;
         for(int i=1;i<prices.length;i++){
-            if(prices[i]>min) dp[i]=prices[i]-min;
+            if(prices[i]>min){
+		maxprofit = Math.max(maxprofit, prices[i]-min);
+	    }
             min = Math.min(min, prices[i]);
+            dp[i] = maxprofit;
         }
         // right to left
-        int maxprofit = 0;
+        maxprofit = 0;
         int max = prices[prices.length-1];
         for(int i=prices.length-2;i>=0;i--){
             if(prices[i]<max){
