@@ -7,9 +7,10 @@ public class Solution {
         int count=1;
         for(int i=1;i<num.length;i++){
             if(count==0){
+		count=1;
                 majority=num[i];
             }
-            if(num[i]==majority)count++;
+            else if(num[i]==majority)count++;
             else count--;
         }
         
