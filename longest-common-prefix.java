@@ -12,6 +12,7 @@ public class Solution {
 			for(int j=0;j<commonlength;j++){
 				if(pivot.charAt(j)!=s.charAt(j)){
 					commonlength = j;
+					break;
 				}
 			}
 		}

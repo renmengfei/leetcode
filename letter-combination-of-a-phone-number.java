@@ -21,7 +21,7 @@ public class Solution {
 
 // Method 2: recurvise
 public class Solution {
-    public static final String[] mapping = new String[] { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+    public String[] mapping = new String[] { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
 	
   	public List<String> letterCombinations(String digits) {
 		LinkedList<String> result = new LinkedList<String>();
