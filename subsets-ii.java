@@ -1,27 +1,28 @@
-// 适用于subsets i/ii
-public List<List<Integer>> subsetsWithDup(int[] num) {
-    Arrays.sort(num);
-    List<List<Integer>> ans = new ArrayList<List<Integer>>();
-    int len = num.length;
-    if (len == 0) return ans; 
+// 套用模板
 
-    ans.add(new ArrayList<Integer>()); // first, need to add the subset of num[0]
-    ans.add(new ArrayList<Integer>());
-    ans.get(1).add(num[0]);
+    public List<List<Integer>> subsetsWithDup(int[] num) {
+        List<List<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        if(num == null || num.length ==0) {
+            return result;
+        }
+        Arrays.sort(num);
+        subsetsHelper(result, list, num, 0);
 
-    int nprev = 1; // this is the number of lists that the previous number was added in.
-                 // if the current number is same as the prev one, it'll be only added in the 
-                // lists that has the prev number.
+        return result;
+    }
+    
+     private void subsetsHelper(List<List<Integer>> result, ArrayList<Integer> list, int[] num, int pos) {
 
-    for (int i = 1; i < len ; ++i){
-        int size = ans.size();
-        if (num[i]!=num[i-1])   // if different
-            nprev = size;        // this means add num[i] to all lists in ans;
-        for (int j = size-nprev; j < size; ++j){
-            List<Integer> l = new ArrayList<Integer>(ans.get(j));
-            l.add(num[i]);
-            ans.add(l);
+        result.add(new ArrayList<Integer>(list));
+        
+        for (int i = pos; i < num.length; i++) {
+            if ( i != pos && num[i] == num[i - 1]) {
+                continue;
+            }    
+            list.add(num[i]);
+            subsetsHelper(result, list, num, i + 1);
+            list.remove(list.size() - 1);
         }
     }
-    return ans;
-}
+

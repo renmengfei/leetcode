@@ -1,4 +1,29 @@
-// Method 1: BFS
+// Method 3: 算法模板，适用于combination，subset等题目
+ public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer> result = new ArrayList<>();
+
+        if(nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        helper(result, list, nums, 0);
+
+    }
+
+    public void helper(List<List<Integer> result, List<Integer> path, int[] num, int pos){
+        result.add(new ArrayList<Integer>(list));
+
+        for (int i = pos; i < num.length; i++) {
+
+            list.add(num[i]);
+            subsetsHelper(result, list, num, i + 1);
+            list.remove(list.size() - 1);
+        }
+
+    }
+
+// Method 1: BFS插入法
 public class Solution {
     public List<List<Integer>> subsets(int[] S) {
         Arrays.sort(S);
@@ -43,3 +68,5 @@ public class Solution {
         return result;
     }
 }
+
+
