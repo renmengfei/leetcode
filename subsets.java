@@ -11,7 +11,7 @@
 
     }
 
-    public void helper(List<List<Integer> result, List<Integer> path, int[] num, int pos){
+    public void helper(List<List<Integer>> result, List<Integer> path, int[] num, int pos){
         result.add(new ArrayList<Integer>(list));
 
         for (int i = pos; i < num.length; i++) {
