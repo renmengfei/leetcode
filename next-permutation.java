@@ -24,7 +24,6 @@ public class Solution {
     
     public void reverse(int[] num, int start, int end){
        while(start<end){
-            int tmp=num[start];
             swap(num,start++,end--);
         }
     }

@@ -12,7 +12,7 @@ public class Solution {
             }
             return;
         }
-	// 直接写i<10也是AC，i<=n/k不是很好理解, 时间复杂度稍微有区别
+	// 直接写i<10也是AC，i<=n/k最小数的范围是[1,n/k], 时间复杂度稍微有区别
         for (int i = start; i <= n / k && i < 10; i++) {
             path.add(i);
             combine(result, path, k - 1, n - i, i + 1);

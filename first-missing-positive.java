@@ -1,6 +1,7 @@
 public int firstMissingPositive(int[] A) {
 		int n = A.length;
 		 for(int i = 0; i < n; ++ i)
+		 //不能写A[i]!=i+1, 因为可能有重复，位置已经被占，会死循环[1,1]
 	            while(A[i] > 0 && A[i] <= n && A[A[i] - 1] != A[i])
 	                swap(A, i, A[i] - 1);
 

@@ -15,10 +15,11 @@ public List<Interval> merge(List<Interval> intervals) {
 		if (curr.end >= iter.start) {
 			curr.end = Math.max(curr.end, iter.end);
 		} else {
-			res.add(new Interval(curr.start, curr.end));
+			res.add(cur);
 			curr = iter;
 		}
 	}
+	// bug:记住最后一个
 	res.add(curr);
 	return res;
 }
