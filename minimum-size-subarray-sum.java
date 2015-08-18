@@ -4,7 +4,7 @@ public class Solution {
         int start = 0, end = 0, sum = 0, minLen = Integer.MAX_VALUE;
         while (end < nums.length) {
             while (end < nums.length && sum < s) sum += nums[end++];
-            // important, all_sum < s
+            // important, all_sum < s,  需要break而不是return 0
             if (sum < s) break;
             while (start < end && sum >= s) sum -= nums[start++];
             if (end - start + 1 < minLen) minLen = end - start + 1;
@@ -15,6 +15,7 @@ public class Solution {
 }
 
 // Method 2: O(NlogN) 看到logn，想到binarysearch，cumulate sum
+// two sum-ii.java也可以用nlogn，for循环每个数，对另一半用binery search
 public class Solution {
     public int minSubArrayLen(int s, int[] nums) {
         int[] sums = new int[nums.length + 1];
