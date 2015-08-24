@@ -7,7 +7,7 @@ public class Solution {
 
         int [][] dp = new int[tl+1][sl+1];
         
-        for(int i=0;i<sl;i++){
+        for(int i=0;i<=sl;i++){
             dp[0][i]=1;
         }
         

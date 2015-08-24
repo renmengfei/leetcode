@@ -19,7 +19,7 @@ public class Solution {
         int result = 0;
         if(prices.length<2) return result;
         
-        // DP P(i-k)+P(k-j)
+        // DP P(i-k)+P(k-j) dp[i]截止到i天，从0-i的最大交易
         int[] dp = new int[prices.length];
         // left to right
         int min = prices[0];
