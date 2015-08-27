@@ -13,6 +13,7 @@
             result.add(intervals.get(i++));
         }
         
+	// start必须放在while里面，不能放在之前，防止越界[1,5], [6,8]
         while(i<n && intervals.get(i).start <= newInterval.end){
             newInterval.start = Math.min(newInterval.start, intervals.get(i).start);
             newInterval.end = Math.max(newInterval.end, intervals.get(i++).end);

@@ -16,6 +16,7 @@ public class Solution {
 			return false;
 		if (board[row][col] != word.charAt(0))
 			return false;
+	        // 或者board[row][col]='*',最后revert回来
 		board[row][col] ^= 256;
 		boolean exist = exist(board, row, col + 1, word.substring(1)) || exist(board, row, col - 1, word.substring(1)) || exist(board, row + 1, col, word.substring(1))
 				|| exist(board, row - 1, col, word.substring(1));
