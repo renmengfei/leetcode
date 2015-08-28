@@ -1,4 +1,4 @@
-// Method 1: 最大最小
+// Method 1: O(N) 最大最小
 public class Solution {
     public int maxProduct(int[] A) {
         if (A == null || A.length == 0) {
@@ -13,6 +13,33 @@ public class Solution {
             result = Math.max(result, max);
         }
         return result;
+    }
+}
+
+// 简洁一点的method 1
+public class Solution {
+    public int maxProduct(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int max=nums[0], min=nums[0], result = nums[0];
+        
+        for(int i=1; i< nums.length; i++){
+            if(nums[i]<0){
+                int tmp = max;
+                max = min;
+                min = tmp;
+            }
+            
+            max = Math.max(max*nums[i], nums[i]);
+            min = Math.min(min*nums[i], nums[i]);
+            
+            result = Math.max(result, max);
+            
+        }
+        return result;
+        
     }
 }
 
