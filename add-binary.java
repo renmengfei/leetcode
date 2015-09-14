@@ -15,7 +15,7 @@ public class Solution {
                     int c1=0, c2=0;
                     if(ap>=0) c1 = a.charAt(ap--)-'0';
                     if(bp>=0) c2 = b.charAt(bp--)-'0';
-                    sb.insert(0, (c1+c2+carry)%2);
+                    result.insert(0, (c1+c2+carry)%2);
                     carry = (c1+c2+carry)/2;
 		}
 		return result.toString();

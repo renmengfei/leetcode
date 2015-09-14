@@ -1,21 +1,31 @@
-public class Solution {
- public List<String> restoreIpAddresses(String s) {
-	    List<String> solutions = new ArrayList<String>();
-	    restoreIp(s, solutions, 0, "", 0);
-	    return solutions;
-	}
-
-	private void restoreIp(String ip, List<String> solutions, int idx, String restored, int count) {
-	    if (count > 4) return;
-	    if (count == 4 && idx == ip.length()) solutions.add(restored);
-
-	    for (int i=1; i<=3; i++) {
-	    	//bug1: not enough digits for the next level
-	        if (idx+i > ip.length()) break;
-	        String s = ip.substring(idx,idx+i);
-	        //bug2: 000 is a wrong IP, cannot simply use Integer.parser(s)
-	        if ((s.startsWith("0") && s.length()>1) || (i==3 && Integer.parseInt(s) >= 256)) continue;
-	        restoreIp(ip, solutions, idx+i, restored+s+(count==3?"" : "."), count+1);
-	    }
-	}
-}
+// (1) path remove 有一点tricky
+// (2) “000” invalid，需要排除    
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<String>();
+        helper(result, "", s, 0);
+        return result;
+    }
+    
+    public void helper(List<String> result, String path, String s, int level){
+        if(level==4){
+            if(s.isEmpty()){
+                result.add(new String(path.substring(0,path.length()-1)));
+            }
+            return;
+        }
+        for(int i = 1; i<=s.length() && i<=3;i++){
+            String digit = s.substring(0,i);
+            if(valid(digit)){
+                path+=digit+".";
+                helper(result, path, s.substring(i,s.length()), level+1);
+                path=path.substring(0, path.length()-digit.length()-1);
+            }
+            
+        }
+    }
+    
+    public boolean valid(String s){
+        if(s.startsWith("0") && s.length()>1) return false;//000
+        int tmp = Integer.parseInt(s);
+        return tmp>=0 && tmp<=255;
+    }

@@ -1,3 +1,5 @@
+//(1)sign
+//(2)溢出的处理，不能简单的用long,因为long也可能溢出
 public class Solution {
     public int atoi(String str) {
       int p = 0;
