@@ -65,4 +65,29 @@ public class Solution {
     }
 }
 
+// Method 2: 找中点用fast，slow, 时间依然是O(N) 因为n+n/2+2/4+...+1 = O(N)
+   public TreeNode sortedListToBST(ListNode head) {
+        if(head==null) return null;
+        if(head.next==null){
+            TreeNode root = new TreeNode(head.val);
+            return root;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode slow=dummy, fast = dummy;
+        
+        while(fast.next!=null && fast.next.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        TreeNode root = new TreeNode(slow.next.val);
+        root.right = sortedListToBST(slow.next.next);
+        slow.next = null;
+        root.left = sortedListToBST(head);
+        
+        return root;
+        
+    }
 
