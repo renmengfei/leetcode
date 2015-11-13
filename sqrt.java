@@ -1,26 +1,23 @@
-// public int sqrt(int x) {
-    //     // Note: The Solution object is instantiated only once and is reused by each test case.
-    //     //二分法
-    //     //bug mid*mid可能溢出
-    //     if(x<0) return -1;
-    //     if(x==0) return 0;
+// Method 1: binary search
+public class Solution {
+    public int mySqrt(int x) {
+        if (x == 0)
+        return 0;
+        int left = 1, right = Integer.MAX_VALUE;
+        while (true) {
+            int mid = left + (right - left)/2;
+            if (mid > x/mid) {
+                right = mid - 1;
+            } else {
+                if (mid + 1 > x/(mid + 1))
+                    return mid;
+                left = mid + 1;
+            }
+        }
+    }
+}
 
-    //     int overflow = (int)Math.sqrt(Integer.MAX_VALUE);
-    //     int left = 0;
-    //     int right = (x/2)<overflow?(x/2+1):overflow;
-        
-    //     while(right>=left){// 等号是个大bug！！！ sqrt(2),就是问题
-    //         int mid = (left+right)/2;
-    //         if(mid*mid==x) return mid;
-    //         else if(mid*mid<x) left=mid+1;
-    //         else right=mid-1;
-    //     }
-        
-    //     return (left+right)/2;
-        
-    // }
-    
-    //Newton method
+// Method 2: Newton method 
     public int sqrt(int x) {
         if(x<=0) return 0;
         
