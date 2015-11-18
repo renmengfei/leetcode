@@ -10,6 +10,8 @@ public class Solution {
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
 			if (map.containsKey(c)) {
+				// 不能直接用start=map.get(c)+1, "abba",当第二次遇到a时，b也已经重复了，不能按照上一个a的index做
+				// start只能move forward，不能backward
 				start = Math.max(start, map.get(c) + 1);
 			}
 			map.put(c, i);
