@@ -18,7 +18,7 @@ public class Solution {
         
         for(int i=0; i<s.length();i++){
             char c = s.charAt(i);
-            if(( map.size()==2 && !map.containsKey(c)) || map.size()>2){
+            if(( map.size()==2 && !map.containsKey(c))){
                 int min = s.length();
                 for(char tmp: map.keySet()) {
                     min = Math.min(map.get(tmp),min);

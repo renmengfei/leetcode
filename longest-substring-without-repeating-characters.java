@@ -15,6 +15,7 @@ public class Solution {
 				start = Math.max(start, map.get(c) + 1);
 			}
 			map.put(c, i);
+			//这一句不能放在if里面
 			max = Math.max(max, i - start + 1);
 		}
 		return max;
