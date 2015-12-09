@@ -1,3 +1,4 @@
+// http://www.cnblogs.com/zuoyuan/p/3719753.html
 /*
 *Given an array of integers, every element appears three times except for one. Find that single one. 
 */
