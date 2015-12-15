@@ -1,4 +1,35 @@
-//参考next permutation
+// Method 1: 模板题
+// The idea to resolve duplicate is to ensure that for elements with the same value, we make sure that they are picked up in the ascending order of index. 
+public class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        boolean[] visited = new boolean[nums.length];
+        helper(result, new ArrayList<Integer>(), nums, visited);
+        return result;
+    }
+    
+    public void helper(List<List<Integer>> result, List<Integer> path, int[] nums, boolean[] visited){
+        if (path.size() == nums.length) {
+            result.add(new ArrayList<Integer>(path));
+            return;
+        }
+        for (int i=0; i<nums.length; i++) {
+            if (!visited[i]) {
+                if (i > 0 && nums[i] == nums[i-1] && visited[i-1]) {
+                    return;
+                }
+                visited[i] = true;
+                path.add(nums[i]);
+                helper(result, path, nums, visited);
+                path.remove(path.size()-1);
+                visited[i] = false;
+            }
+        }
+    }
+}
+
+// Method 2: 参考next permutation
 public class Solution {
     public List<List<Integer>> permuteUnique(int[] num) {
         List<List<Integer>> result = new ArrayList<>();
@@ -32,7 +63,6 @@ public class Solution {
     
      public void reverse(int[] num, int start, int end){
        while(start<end){
-            int tmp=num[start];
             swap(num,start++,end--);
         }
     }
