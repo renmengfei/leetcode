@@ -6,8 +6,10 @@ public class Solution {
             return s.isEmpty();
  
         boolean is_same = same(s,p);
-        if (p.length()>1 && '*' == p.charAt(1))
-            return (isMatch(s, p.substring(2)) || is_same && isMatch(s.substring(1), p));
+        if (p.length()>1 && '*' == p.charAt(1)){
+		boolean a = isMatch(s, p.substring(2));// .* match empty
+		boolean b = is_same && isMatch(s.substring(1), p); // a*
+		return a || b;
         else
             return  is_same && isMatch(s.substring(1), p.substring(1));
     }
