@@ -1,4 +1,5 @@
 // Method 1: 多路归并，优先队列
+// O(Nlogk)
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists==null||lists.length==0) return null;

@@ -24,3 +24,24 @@ public class Solution {
         return newhead;
     }
 }
+
+// Method 3: iteration, 用于reverse list ii
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null) return head;
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        ListNode start = head;
+        ListNode then = head.next;
+        
+        while(then!=null){
+            start.next = then.next;
+            then.next = dummy.next;
+            dummy.next = then;
+            then = start.next;
+        }
+        
+        return dummy.next;
+      
+    }

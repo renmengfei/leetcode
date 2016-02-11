@@ -1,7 +1,5 @@
 // Method 1: easy way. O(m*n)
 public int strStr(String haystack, String needle) {
-		if (needle.isEmpty()) return 0;
-		if (haystack.isEmpty()) return -1;
 		for (int i = 0;; i++) {
 			for (int j = 0;; j++) {
 				if (j == needle.length())
@@ -14,5 +12,27 @@ public int strStr(String haystack, String needle) {
 		}
 	}
 
-// Method 2: KMP
+// Method 2: initial thought
+public int strStr(String haystack, String needle) {
+        if (needle.isEmpty()) return 0;
+        if (haystack.isEmpty()) return -1;
+                
+        for(int start=0; start<= haystack.length()-needle.length(); start++){
+            //match first
+            if(haystack.charAt(start)==needle.charAt(0)){
+                int i=0;
+                for(;i<needle.length();i++){
+                    if(haystack.charAt(start+i)!=needle.charAt(i)) break;
+                }
+                if(i==needle.length()){
+                    return start;
+                }
+            }
+        }
+        
+        return -1;
+        
+    }
+
+// Method 3: KMP
 http://blog.csdn.net/yearn520/article/details/6729426

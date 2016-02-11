@@ -1,48 +1,40 @@
 // Method 1: iteration
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
 public class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
         if(head==null || head.next==null || k<2) return head;
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         
-        ListNode start = dummy; // before the real start
-        ListNode end = dummy; //the real end
-        ListNode pivot = head; //记录reverse后的末尾，也就是reverse的开头
+        ListNode pre = dummy, end = dummy;
+        ListNode start;
+        
         while(end!=null){
-            int count = 0;
-            while(end!=null && count<k){
-                end = end.next;
+            int count=0;
+            while(end!=null && count!=k){
+                end=end.next;
                 count++;
             }
-            if(end==null) return dummy.next;
-	    // bug: pivot要留着，记录末尾
-            pivot = start.next;
+            if(end==null) break;
             
-            ListNode tmp;
-            while(start.next!=end){
-                tmp = start.next;
-                start.next = tmp.next;
-                tmp.next = end.next;
-                end.next = tmp;
+            start=pre.next;
+            ListNode then = start.next;
+            while(pre.next!=end){
+                
+                start.next = then.next;
+                then.next = pre.next;
+                pre.next = then;
+                then = start.next;
             }
-            start = pivot;
-            end = pivot;
+            pre = start;
+            end = start;
         }
+        
         return dummy.next;
+        
     }
 }
 
-
 // Method 2: recursion
-
    public ListNode reverseKGroup(ListNode head, int k) {
         ListNode curr = head;
         int count = 0;
@@ -64,3 +56,31 @@ public class Solution {
         return head;
     }
 
+
+// Method 3: 模板
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if(head==null || head.next==null || k<2) return head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        ListNode end=dummy;
+        int count = 0;
+        while(end!=null && count++<k){
+            end = end.next;
+        }
+        if(end==null) return dummy.next;
+        
+        ListNode nexthead = reverseKGroup(end.next, k);
+        end.next = nexthead;
+        
+        
+        ListNode start = dummy.next, then = start.next;
+        while(dummy.next!=end){
+            start.next = then.next;
+            then.next = dummy.next;
+            dummy.next = then;
+            then = start.next;
+        }
+        
+        return dummy.next;
+    }
