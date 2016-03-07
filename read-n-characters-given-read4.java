@@ -15,6 +15,7 @@ The read function will only be called once for each test case.
 /* The read4 API is defined in the parent class Reader4.
       int read4(char[] buf); */
 // buffer用来盛放read的结果，是output，而不是input
+// eof用于标志file是不是已经没有东西了，{"", 1}，比如file是空，想read 1. 如果不标志eof，那么while死循环
 public class Solution extends Reader4 {
     /**
      * @param buf Destination buffer

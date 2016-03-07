@@ -1,9 +1,12 @@
 class TrieNode {
-    boolean isWordEnd;
-    HashMap<Character,TrieNode> children ;
     // Initialize your data structure here.
+    char val;
+    TrieNode[] children;
+    boolean eof;
+    
     public TrieNode() {
-        children = new HashMap<Character,TrieNode>();
+        children = new TrieNode[26];
+        eof = false;
     }
 }
 
@@ -16,55 +19,40 @@ public class Trie {
 
     // Inserts a word into the trie.
     public void insert(String word) {
-        if(word==null || word.isEmpty()) return;
-        char[] cs = word.toCharArray();
-        int level = 0;
         TrieNode ptr = root;
-        while(level!=cs.length){
-            if(!ptr.children.containsKey(cs[level])){
-                TrieNode tmp = new TrieNode();
-                ptr.children.put(cs[level],tmp);
+        
+        for(char c: word.toCharArray()){
+            if(ptr.children[c-'a']==null){
+                ptr.children[c-'a'] = new TrieNode();
+                ptr.children[c-'a'].val = c;
             }
-            ptr = ptr.children.get(cs[level]);
-            level++;
+            ptr = ptr.children[c-'a'];
         }
-        ptr.isWordEnd=true;
+        ptr.eof = true;
     }
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
         TrieNode ptr = root;
-        char[] cs = word.toCharArray();
-        int level = 0;
         
-        while(level!=cs.length){
-            if(!ptr.children.containsKey(cs[level])){
-                return false;
-            }
-            else{
-                ptr = ptr.children.get(cs[level]);
-                level++;
-            }
+        for(char c: word.toCharArray()){
+            if(ptr.children[c-'a']==null) return false;
+            ptr = ptr.children[c-'a'];
         }
-        return ptr.isWordEnd;
+        
+        return ptr.eof;
     }
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
         TrieNode ptr = root;
-        char[] cs = prefix.toCharArray();
-        int level = 0;
         
-        while(level!=cs.length){
-            if(!ptr.children.containsKey(cs[level])){
-                return false;
-            }
-            else{
-                ptr = ptr.children.get(cs[level]);
-                level++;
-            }
+        for(char c: prefix.toCharArray()){
+            if(ptr.children[c-'a']==null) return false;
+            ptr = ptr.children[c-'a'];
         }
+        
         return true;
     }
 }

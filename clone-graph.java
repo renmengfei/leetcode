@@ -27,20 +27,21 @@ public class Solution {
 }
     
 // Method 2: DFS, recursive
-public class Solution {
-    HashMap<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<UndirectedGraphNode,UndirectedGraphNode>();
-     
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if(node==null) return null;
-        if(map.containsKey(node)) return map.get(node);
-        
-        UndirectedGraphNode result = new UndirectedGraphNode(node.label);
-        map.put(node, result);
-        
-        for(UndirectedGraphNode n: node.neighbors){
-            UndirectedGraphNode newn = cloneGraph(n);
-            map.get(node).neighbors.add(newn);
-        }
-        return result;
+        HashMap<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<>();
+        helper(map, node);
+        return map.containsKey(node)?map.get(node): null;
     }
-}
+    
+    public void helper(HashMap<UndirectedGraphNode,UndirectedGraphNode> map, UndirectedGraphNode node){
+        if(node==null) return;
+        if(map.containsKey(node)) return;
+        
+        UndirectedGraphNode copy = new UndirectedGraphNode(node.label);
+        map.put(node, copy);
+        
+        for(UndirectedGraphNode child: node.neighbors){
+            helper(map, child);
+            copy.neighbors.add(map.get(child));
+        }
+    }
