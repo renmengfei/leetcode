@@ -4,7 +4,7 @@ public class Solution {
         int start = 0, end = 0, sum = 0, minLen = Integer.MAX_VALUE;
         while (end < nums.length) {
             while (end < nums.length && sum < s) sum += nums[end++];
-            // important, all_sum < s,  需要break而不是return 0
+            // important, all_sum < s,  需要break而不是return 0, 因为可能前面已经找到满足条件的minlen了，这次sum>s就已经循环结束了,不能直接返回0，而是break
             if (sum < s) break;
             while (start < end && sum >= s) sum -= nums[start++];
             if (end - start + 1 < minLen) minLen = end - start + 1;

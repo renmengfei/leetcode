@@ -48,6 +48,3 @@ public class Solution {
         }
     }
     
-    public int find(int i){
-        return id[i];
-    }
