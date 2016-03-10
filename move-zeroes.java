@@ -1,3 +1,4 @@
+// Method 1: swap
 public class Solution {
     public void moveZeroes(int[] nums) {
         int end = 0;
@@ -18,3 +19,19 @@ public class Solution {
         nums[j]=tmp;
     }
 }
+
+// Method 2: 模板方法
+    public void moveZeroes(int[] nums) {
+      int end = 0;
+      
+      for(int i=0;i<nums.length;i++){
+          if(nums[i]!=0){
+              nums[end++]=nums[i];
+          }
+      }
+      
+      while(end!=nums.length){
+          nums[end++]=0;
+      }
+        
+    }
