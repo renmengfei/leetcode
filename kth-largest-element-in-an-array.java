@@ -6,6 +6,7 @@ public int findKthLargest(int[] nums, int k) {
 }
 
 // Method 2: Priority Queue, O(N*logK) time, O(k) space
+// 永远只存k个，而不是全部放进queue
 public int findKthLargest(int[] nums, int k) {
 
     final PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -61,3 +62,6 @@ public class Solution {
     }
     
 }
+
+
+// Quick Select
