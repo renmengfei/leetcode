@@ -11,7 +11,6 @@ public class Solution {
         
         int i = 0;
         while(i<sl && s.charAt(i)==t.charAt(i)) i++;
-        if(i==sl) return diff>0;
         if(diff==0) i++;
         while(i<sl && s.charAt(i)==t.charAt(i+diff)) i++;
         return i==sl;
