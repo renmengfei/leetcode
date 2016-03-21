@@ -1,5 +1,5 @@
 public class LRUCache {
-    private HashMap<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
+        private HashMap<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
 	private int count;
 	private int capacity;
 	private DLinkedNode head, tail;
