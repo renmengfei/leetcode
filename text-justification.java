@@ -1,5 +1,6 @@
 //corner case太多，其实题目不难
 // len=-1   len+word +1 <= maxLen很巧妙
+// len=-1的原因，words+空格，但最后一个word不需要加空格
 public class Solution {
     public List<String> fullJustify(String[] words, int maxWidth) {
         List<String> result = new ArrayList<String>();

@@ -65,3 +65,44 @@ public class Solution {
 
 
 // Quick Select
+public class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        return quickselect(nums, 0, nums.length-1, k-1);
+    }
+    
+    public int quickselect(int[] G, int first, int last, int k) {
+      if (first <= last) {
+            int pivot = partition(G, first, last);
+            if (pivot == k) {
+                return G[k];
+            }
+            if (pivot > k) {
+                return quickselect(G, first, pivot - 1, k);
+            }
+            return quickselect(G, pivot + 1, last, k);
+      }
+        return Integer.MIN_VALUE;
+    }
+
+
+    public int partition(int[] nums, int start, int end){
+        // int pivot = start + new Random().nextInt(end - start + 1);
+        // swap(nums, pivot, end);
+        
+        for(int i=start; i<end; i++){
+            if(nums[i]>nums[end]){
+                swap(nums, i, start);
+                start++;
+            }
+        }
+        
+        swap(nums, start, end);
+        return start;
+    }
+    
+    public void swap(int[] num, int i, int j){
+        int tmp = num[i];
+        num[i] = num[j];
+        num[j] = tmp;
+    }
+}
