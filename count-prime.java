@@ -1,9 +1,12 @@
 //http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+// (1)2的倍数，除了2都不是prime，所以跳过i+=2
+// (2)根号n是limit
+//(3) prime的整倍数都不是prime，所以 j=i*i, j+=i；加倍数
 public class Solution {
     public int countPrimes(int n) {
         if(n<=2) return 0;
         
-        boolean[] notprime = new boolean[n+1]; // initial all are prime
+        boolean[] notprime = new boolean[n]; // initial all are prime
         
         // 跳过2的倍数
         for(int i=3;i<Math.sqrt(n);i+=2){
@@ -26,11 +29,12 @@ public class Solution {
 
 // 判断一个数是否是prime
 // time: log(N)/2 
-public boolean isPrime(int n){
-    if(n%2==0) return false;
-   
-    for(int i=3; i<=Math.sqrt(n);i+=2){
-        if(n%i==0) return false;
-    }
-    return true;
+// 1不是素数，2是素数
+private static boolean isPrime(int num) {
+        if (num < 2) return false;
+        if (num == 2) return true;
+        if (num % 2 == 0) return false;
+        for (int i = 3; i * i <= num; i += 2)
+            if (num % i == 0) return false;
+        return true;
 }
