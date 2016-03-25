@@ -37,21 +37,19 @@ public class Solution {
 public List<String> findStrobogrammatic(int n) {
 
         List<String> prev = new ArrayList<String>();
-        int start = 1;
         if(n % 2 == 0){
             prev.add("");
         } else{
             prev.add("0");
             prev.add("1");
             prev.add("8");
-            start = 2;
         }
 
-        for(int i = start; i <= n; i+=2){
+        for(int i = 0; i <n/2; i++){
             List<String> res = new ArrayList<String>();
             for(int j = 0; j < prev.size(); j++){
                 String cur = prev.get(j);
-                if(i+1 != n){
+                if(i+1 != n/2){
                     res.add("0" + cur + "0");
                 }
                 res.add("1" + cur + "1");
