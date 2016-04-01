@@ -32,7 +32,10 @@ public class ValidWordAbbr {
         for(String word: dictionary){
             String tmp = toAbbr(word);
             if(map.containsKey(tmp)){
-                map.put(tmp, "");
+		// 有重复【“a”，“a” 】isUnque("a")=true
+		 if(!map.get(key).equals(str)){
+                	map.put(tmp, "");
+		 }
             }
             else{
                 map.put(tmp, word);

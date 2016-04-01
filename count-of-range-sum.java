@@ -2,6 +2,7 @@
 // 最后的count=左边+右边+merge
 // O(nlogn)
 // 其实可以先sort sums，用nlogn时间，再for 循环 n个sums，每个sum，binary search找lower upper的边界
+// sums用long存，因为sum会大于max
 
 public class Solution {
     public int countRangeSum(int[] nums, int lower, int upper) {
