@@ -1,4 +1,35 @@
+// Method 1: 不需要reverse string
+public class Solution {
+    public String multiply(String num1, String num2) {
+        int m = num1.length(), n = num2.length();
+        int[] pos = new int[m + n];
+    
+        for(int i = m - 1; i >= 0; i--) {
+            for(int j = n - 1; j >= 0; j--) {
+                int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0'); 
+                int p1 = i + j, p2 = i + j + 1;
+                int sum = mul + pos[p2];
+    
+                pos[p1] += sum / 10;
+                pos[p2] = (sum) % 10;
+            }
+        }  
+    
+        StringBuilder sb = new StringBuilder();
+       
+        int i=0;
+        while(i<pos.length && pos[i]==0) i++;
+        if(i==pos.length) return "0";
+        
+        while(i<pos.length) sb.append(pos[i++]);
+        return sb.toString();
+    }
+}
+
+
+// method 2: reverse
 public static String multiply(String num1, String num2) {
+
 	num1 = new StringBuffer(num1).reverse().toString();
 	num2 = new StringBuffer(num2).reverse().toString();
 
