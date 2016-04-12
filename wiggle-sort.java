@@ -4,12 +4,12 @@ For example, given nums = [3, 5, 2, 1, 6, 4], one possible answer is [1, 6, 2, 5
 
 public class Solution {
     public void wiggleSort(int[] nums) {
-        for(int i=0; i<nums.length;i++){
-            if(i%2==1){
-                if(nums[i]<nums[i-1]) swap(nums, i);
+        for(int i=0; i<nums.length-1;i++){
+            if(i%2==1 && nums[i]<nums[i+1]){
+                swap(nums, i);
             }
-            else{
-                if(i!=0 && nums[i]>nums[i-1]) swap(nums,i);
+            else if(i%2==0 && nums[i]>nums[i+1]){
+                swap(nums,i);
             }
         }
     }
