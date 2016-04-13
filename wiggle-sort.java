@@ -17,7 +17,7 @@ public class Solution {
     
     public void swap(int[] nums, int i){
         int tmp = nums[i];
-        nums[i] = nums[i-1];
-        nums[i-1]=tmp;
+        nums[i] = nums[i+1];
+        nums[i+1]=tmp;
     }
 }
