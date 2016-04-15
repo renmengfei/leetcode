@@ -1,6 +1,6 @@
 // Method 3: 算法模板，适用于combination，subset等题目
  public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer> result = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
 
         if(nums == null || nums.length == 0) {
             return result;
@@ -8,16 +8,31 @@
         Arrays.sort(nums);
         ArrayList<Integer> list = new ArrayList<Integer>();
         helper(result, list, nums, 0);
+	return result;
+    }
+
+
+  //我自己的做法，感觉更好理解
+  public void helper(List<List<Integer>> result, List<Integer> path, int[] num, int pos){
+        if(pos == num.length){
+            result.add(new ArrayList<Integer>(path));
+            return;
+        }
+        
+        List<Integer> tmp = new ArrayList<Integer>(path);
+        tmp.add(num[pos]);
+        helper(result, tmp, num, pos+1);
+        helper(result, path, num, pos+1);
 
     }
 
-    public void helper(List<List<Integer>> result, List<Integer> path, int[] num, int pos){
+    public void helper(List<List<Integer>> result, List<Integer> list, int[] num, int pos){
         result.add(new ArrayList<Integer>(list));
 
         for (int i = pos; i < num.length; i++) {
 
             list.add(num[i]);
-            subsetsHelper(result, list, num, i + 1);
+            helper(result, list, num, i + 1);
             list.remove(list.size() - 1);
         }
 

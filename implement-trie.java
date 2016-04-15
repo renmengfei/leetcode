@@ -1,6 +1,5 @@
 class TrieNode {
     // Initialize your data structure here.
-    char val;
     TrieNode[] children;
     boolean eof;
     
@@ -24,7 +23,6 @@ public class Trie {
         for(char c: word.toCharArray()){
             if(ptr.children[c-'a']==null){
                 ptr.children[c-'a'] = new TrieNode();
-                ptr.children[c-'a'].val = c;
             }
             ptr = ptr.children[c-'a'];
         }
