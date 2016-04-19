@@ -1,27 +1,24 @@
-// Method 1:http://fisherlei.blogspot.com/2013/03/leetcode-palindrome-partitioning-ii.html
+// Method 1: DP
 //思路其实跟jump game的dp做法很像，不是直接算dp[i]的关系，而是找出之前的所有dp[j]
 public class Solution {
     public int minCut(String s) {
-         int len = s.length();  
-         int[] D = new int[len+1];  
-         boolean[][] P = new boolean[len][len];  
+        int n = s.length();
+        int[] dp = new int[n];
+        boolean[][] pal = new boolean[n][n];
         
-        // init, the worst case is cutting by each char  
-         for(int i = 0; i <= len; i++){
-             D[i] = len-i;
-         }
-           
-         //从后向前    
-         for(int i = len-1; i >= 0; i--){  
-             for(int j = i; j < len; j++){  
-                 // bug:先计算j－i,短路，否则p会out of array boundary
-                 if(s.charAt(i) == s.charAt(j) && (j-i<2 || P[i+1][j-1])){  
-                       P[i][j] = true;  
-                       D[i] = Math.min(D[i],D[j+1]+1);  
-                  }  
-             }  
-        }  
-        return D[0]-1;  
+        for(int i=0;i<n;i++){
+            int min = i;
+            for(int j=0;j<=i;j++){
+                if(s.charAt(i)==s.charAt(j) && (j+1>i-1 || pal[j+1][i-1])){
+                    pal[j][i]=true;
+                    // bug: j==0前面没有dp，这时不用切割，min=0
+                    min = j==0? 0: Math.min(min, dp[j-1]+1);
+                }
+            }
+            dp[i] = min;
+        }
+        
+        return dp[n-1];
     }
 }
 
