@@ -1,5 +1,6 @@
 // (1) 从终点开始，BFS,算出每个点到终点的distance
 // (2) 从起点开始，DFS，distance必须越来越小
+// (3) dfs的时候，判断distance.get(crt)==distance.get(next)+1非常重要！
 public class Solution {
     public List<List<String>> findLadders(String start, String end,
             Set<String> dict) {

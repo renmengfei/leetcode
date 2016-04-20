@@ -1,83 +1,93 @@
-//图的bfs，用到两个数据结构，queue(bfs)，hashmap(visited)
-//更好的方法，双向拓展，效率是1/K^2
-
-// Method 1: 正常的bfs
-public class Solution {
-    public int ladderLength(String start, String end, Set<String> dict) {
-        if (dict == null || dict.size() == 0) {
-            return 0;
-        }
-        Queue<String> queue = new LinkedList<String>();
-        queue.add(start);
-        dict.remove(start);
-        int length = 1;
-        
-        while(!queue.isEmpty()){
-            //分层问题，最好用count来for循环
-            int count = queue.size();
-            for(int i=0;i<count;i++){
-                String current = queue.poll();
-                //遍历字母
-                for (char c = 'a'; c <= 'z'; c++) {
-                    //search每一位
-                    for (int j=0; j < current.length(); j++) {
-                        //跳过当前字母
-                        if (c == current.charAt(j)) {
-                            continue;
-                        }
-                        //改变一位
-                        String tmp = replace(current, j, c);
-                        if (tmp.equals(end)) {
-                            return length + 1;
-                        }
-                        if (dict.contains(tmp)){
-                            queue.add(tmp);
-                            dict.remove(tmp);
-                        }
-                    }
-                }
-            }
-            length++;
-        }
-        return 0;
+// Method 1: 图的bfs，注意remove，防止多次visit
+    public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+         wordList.add(endWord);
+         
+         Queue<String> q = new LinkedList<String>();
+         addNeighbor(beginWord, wordList, q);
+         
+         int dist = 2;
+         while(!q.isEmpty()){
+             int size = q.size();
+             for(int i=0;i<size; ++i){
+                 String cur = q.poll();
+                 if(cur.equals(endWord)) return dist;
+                 addNeighbor(cur, wordList, q);
+             }
+             dist++;
+         }
+         
+         return 0;
     }
     
-     private String replace(String s, int index, char c) {
-        char[] chars = s.toCharArray();
-        chars[index] = c;
-        return new String(chars);
+    public void addNeighbor(String word, Set<String> wordList, Queue<String> q){
+        wordList.remove(word);
+        char[] words = word.toCharArray();
+        for(int i=0;i<word.length(); i++){
+            char letter = words[i];
+            for(char c='a';c<='z';c++){
+                
+                if(c==letter) continue;
+                words[i]=c;
+                String tmp = new String(words);
+                if(wordList.contains(tmp)){
+                    q.add(tmp);
+                    wordList.remove(tmp);
+                }
+            }
+            words[i]=letter;
+        }
     }
 }
 
+// Method 2:双向发展
+//beginset, endset, 一开始只有一个word，然后轮流找neighbour，如果beginset里找到endset，说明merge了；如果endset里找到beginset，也一样
+public class Solution {
+    public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+        Set<String> beginSet = new HashSet<String>(), endSet = new HashSet<String>();
 
-// Method 2:
-public int ladderLength(String start, String end, Set<String> dict) {
-	Map<String, Integer> distance = new HashMap<String, Integer>();
-	distance.put(start, 1);
-	Queue<String> q = new LinkedList<>();
-	q.add(start);
-	while (!q.isEmpty()) {
-		String word = q.poll();
-		if (word.equals(end))
-			break;
-		
-		for (int i = 0; i < word.length(); i++) {
-			char[] newword = word.toCharArray();
-			for (int j = 0; j < 26; j++) {
-				newword[i] = (char) (j + 'a');
-				String tmp = new String(newword);
-				if(tmp.equals(end)) return distance.get(word)+1;
-				if (dict.contains(tmp) && !distance.containsKey(tmp)) {
-					distance.put(tmp, distance.get(word) + 1);
-					q.add(tmp);
-				}
-			}
-		}
-	}
-
-	Integer result = distance.get(end);
-	if (result == null)
-		return 0;
-	return result;
+        int len = 1;
+        int strLen = beginWord.length();
+        HashSet<String> visited = new HashSet<String>();
+    
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+            //swap的目的是，beginset，endset轮流找neighbour
+            if (beginSet.size() > endSet.size()) {
+                Set<String> set = beginSet;
+                beginSet = endSet;
+                endSet = set;
+            }
+    
+            Set<String> temp = new HashSet<String>();
+            for (String word : beginSet) {
+                char[] chs = word.toCharArray();
+    
+                for (int i = 0; i < chs.length; i++) {
+                    char old = chs[i];
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        
+                        chs[i] = c;
+                        String target = String.valueOf(chs);
+    
+                        if (endSet.contains(target)) {
+                            return len + 1;
+                        }
+    
+                        if (!visited.contains(target) && wordList.contains(target)) {
+                            temp.add(target);
+                            visited.add(target);
+                        }
+                    }
+                    chs[i] = old;
+                }
+            }
+    
+            beginSet = temp;
+            len++;
+        }
+    
+        return 0;
+    }
 }
 
