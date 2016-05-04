@@ -23,7 +23,7 @@ public class Solution {
 }
 
 // Method 2: O(1) space
-Let b1, b0 represent buy[i - 2], buy[i - 1], buy[i]
+Let b1, b0 represent buy[i - 1], buy[i]
 Let s2, s1, s0 represent sell[i - 2], sell[i - 1], sell[i]
 
 public class Solution {
