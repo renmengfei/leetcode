@@ -1,28 +1,31 @@
 public class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
+        if(s1==null || s1.isEmpty()) return s3.equals(s2);
+        if(s2==null || s2.isEmpty()) return s3.equals(s1);
+        if(s3.length()!=s1.length()+s2.length()) return false;
+                
         int n = s1.length();
         int m = s2.length();
-        if ((n+m)!=s3.length()) return false;
-        boolean[][] dp = new boolean[m+1][n+1];
+        boolean[][] dp = new boolean[n+1][m+1];
         
-	// init 
-        dp[0][0] = true;
-        for(int i=1;i<n+1;i++){
-  	    // bug: 第i个位置，char的index是i－1
-            dp[0][i]=dp[0][i-1] && (s1.charAt(i-1)==s3.charAt(i-1));
-        }
-        
-        for(int i=1;i<m+1;i++){
-            dp[i][0]=dp[i-1][0] && (s2.charAt(i-1)==s3.charAt(i-1));
-        }
-       
- 	// start loop 
-        for(int i=1;i<m+1;i++){
-            for(int j=1;j<n+1;j++){
-                dp[i][j] = (dp[i-1][j] && (s2.charAt(i-1))==s3.charAt(i+j-1) ) || (dp[i][j-1] && (s1.charAt(j-1)==s3.charAt(i+j-1)));
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=m;j++){
+                if(i==0 && j==0){
+                    dp[i][j]=true;
+                }
+                else if(i==0){
+                    dp[i][j] = dp[i][j-1] && s3.charAt(i+j-1)==s2.charAt(j-1);
+                }
+                else if(j==0){
+                    dp[i][j]=dp[i-1][j] && s3.charAt(i+j-1)==s1.charAt(i-1);
+                }
+                else{
+                    dp[i][j] = (dp[i][j-1] && s3.charAt(i+j-1)==s2.charAt(j-1) ) || (dp[i-1][j] && s3.charAt(i+j-1)==s1.charAt(i-1));
+                }
             }
         }
         
-        return dp[m][n];
+        return dp[n][m];
+        
     }
 }
